@@ -314,7 +314,7 @@ body {
 }
 
 .info-empty p {
-  font-size: 14px;
+  font-size: 16px;
   color: #0c4a6e;
   font-weight: 600;
 }
@@ -344,14 +344,14 @@ body {
 }
 
 .bacteria-description h4 {
-  font-size: 16px;
+  font-size: 18px;
   color: #0c4a6e;
   margin-bottom: 10px;
   font-weight: 700;
 }
 
 .bacteria-description p {
-  font-size: 16px;
+  font-size: 18px;
   color: #0c4a6e;
   line-height: 1.6;
   margin: 0;
