@@ -182,11 +182,11 @@ body {
 }
 
 .results-section {
-  flex: 3;
+  flex: 1.8;
 }
 
 .info-section {
-  flex: 2;
+  flex: 1;
 }
 
 /* ── 標題列 ── */
@@ -265,7 +265,7 @@ body {
 }
 
 .class-name-zh {
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 700;
   color: #0c4a6e;
   white-space: nowrap;
@@ -362,7 +362,7 @@ body {
 }
 
 .bacteria-description p {
-  font-size: 14px;
+  font-size: 16px;
   color: #0c4a6e;
   line-height: 1.6;
   margin: 0;
