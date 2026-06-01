@@ -182,11 +182,11 @@ body {
 }
 
 .results-section {
-  flex: 1.8;
+  flex: 3;
 }
 
 .info-section {
-  flex: 1;
+  flex: 2;
 }
 
 /* ── 標題列 ── */
