@@ -14,7 +14,7 @@ const BACTERIA_INFO = {
     name: "白血球 (White Blood Cells)",
     description:
       "尿液中白血球增多通常表示泌尿道有發炎或感染情況。常見疾病包括膀胱炎、腎盂腎炎、尿道炎等。典型症狀包括頻尿、排尿疼痛、尿液混濁，若是腎臟感染還可能出現發燒、腰痛等。若發現白血球異常升高且合併症狀，建議盡快就醫進行尿液培養檢查。",
-    image: "img/wbc.jpeg",
+    image: "img/WBC.jpeg",
   },
   "紅血球 (RBC)": {
     name: "紅血球 (Red Blood Cells)",
