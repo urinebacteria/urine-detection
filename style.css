@@ -322,7 +322,7 @@ body {
 .bacteria-detail {
   display: flex;
   gap: 15px;
-  align-items: flex-start;
+  align-items: stretch;
   width: 100%;
   height: 100%;
 }
@@ -330,7 +330,6 @@ body {
 .bacteria-image {
   width: 33.33%;
   height: 100%;
-  max-height: 200px;
   object-fit: cover;
   border-radius: 8px;
   border: 2px solid rgba(14, 165, 233, 0.3);
