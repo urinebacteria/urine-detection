@@ -133,17 +133,37 @@ async function autoStart() {
   }
 }
 
+// 將 label 拆成中文和英文部分
+function splitLabel(label) {
+  // 格式：「中文 (英文)」或「中文 英文」
+  const matchParen = label.match(/^(.+?)\s*\((.+)\)$/);
+  if (matchParen) return { zh: matchParen[1].trim(), en: matchParen[2].trim() };
+  // 沒有括號：用空格分割，最後一段英文、前面中文
+  const parts = label.split(" ");
+  if (parts.length > 1) {
+    const en = parts[parts.length - 1];
+    const zh = parts.slice(0, -1).join(" ");
+    return { zh, en };
+  }
+  return { zh: label, en: "" };
+}
+
 // 建立結果列表
 function buildClassList() {
   els.list.innerHTML = "";
   labels.forEach((name, idx) => {
     if (isHidden(name)) return;
+    const display = LABEL_DISPLAY[name] || name;
+    const { zh, en } = splitLabel(display);
     const div = document.createElement("div");
     div.className = "result-item not-detected";
     div.dataset.idx = idx;
     div.innerHTML = `
       <div class="progress-container">
-        <span class="class-name">${getDisplayName(name)}</span>
+        <span class="class-name">
+          <span class="class-name-zh">${zh}</span>
+          ${en ? `<span class="class-name-en">(${en})</span>` : ""}
+        </span>
         <div class="progress-bar">
           <div class="progress-fill" id="p${idx}" style="width:0%;"></div>
         </div>
