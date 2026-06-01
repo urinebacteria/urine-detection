@@ -1,0 +1,385 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", "Microsoft JhengHei", Arial, sans-serif;
+  background: #009dcd;
+  min-height: 100vh;
+  padding: 0;
+  margin: 0;
+}
+
+.container {
+  width: 100%;
+  height: 100vh;
+  background: #00a7d9;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ── 標題區 ── */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 20px 20px 10px 20px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #3e3a39;
+  margin: 0;
+}
+
+/* ── 主內容雙欄 ── */
+.content {
+  display: flex;
+  gap: 20px;
+  padding: 0 20px 20px 20px;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* ── 左欄：攝影機 ── */
+.video-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.video-container {
+  position: relative;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 15px;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 8px 32px rgba(14, 165, 233, 0.2);
+}
+
+/* ESP JPEG 串流圖片（JS 動態插入） */
+.video-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 15px;
+}
+
+/* 狀態徽章列（左上 + 右上） */
+.video-overlay {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  z-index: 11;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.status-indicator {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 10px 15px;
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(14, 165, 233, 0.3);
+  box-shadow: 0 4px 12px rgba(14, 165, 233, 0.2);
+}
+
+.status-dot {
+  width: 10px;
+  height: 10px;
+  background: #009dcd;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+  box-shadow: 0 0 10px #0ea5e9;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.1);
+  }
+}
+
+.status-text {
+  color: #0c4a6e;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.model-badge {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 10px 15px;
+  border-radius: 25px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(14, 165, 233, 0.3);
+  box-shadow: 0 4px 12px rgba(14, 165, 233, 0.2);
+  font-size: 12px;
+  font-weight: 600;
+  color: #0c4a6e;
+  max-width: 55%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ── 右欄：結果 ── */
+.results-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 25px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 8px 32px rgba(14, 165, 233, 0.2);
+}
+
+.results-header {
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #009dcd;
+}
+
+.results-header h2 {
+  font-size: 16px;
+  color: #0c4a6e;
+  font-weight: 700;
+}
+
+/* 結果列表（雙欄 grid） */
+.results-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  overflow-y: auto;
+  padding-right: 10px;
+  margin-bottom: 20px;
+}
+
+.results-list::-webkit-scrollbar {
+  width: 8px;
+}
+.results-list::-webkit-scrollbar-track {
+  background: rgba(14, 165, 233, 0.1);
+  border-radius: 10px;
+}
+.results-list::-webkit-scrollbar-thumb {
+  background: rgba(14, 165, 233, 0.5);
+  border-radius: 10px;
+}
+.results-list::-webkit-scrollbar-thumb:hover {
+  background: rgba(14, 165, 233, 0.7);
+}
+
+/* 結果項目 */
+.result-item {
+  background: transparent;
+  padding: 8px 0;
+  margin-bottom: 8px;
+  transition: background 0.3s ease;
+  border-bottom: 1px solid rgba(14, 165, 233, 0.2);
+}
+
+.result-item:hover {
+  background: rgba(14, 165, 233, 0.05);
+}
+.result-item:last-child {
+  border-bottom: none;
+}
+
+.result-item.not-detected {
+  opacity: 0.4;
+}
+.result-item.not-detected .class-name {
+  color: #64748b;
+}
+
+/* 每列：名稱 + 進度條 + 百分比 */
+.progress-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.class-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #0c4a6e;
+  min-width: 130px;
+  flex-shrink: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.progress-bar {
+  flex: 1;
+  height: 8px;
+  background: rgba(14, 165, 233, 0.2);
+  border-radius: 10px;
+  overflow: hidden;
+  min-width: 60px;
+  max-width: 200px;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #0ea5e9 0%, #7dd3fc 100%);
+  border-radius: 10px;
+  transition: width 0.5s ease-out;
+  box-shadow: 0 0 10px rgba(14, 165, 233, 0.5);
+}
+
+.percentage {
+  min-width: 40px;
+  text-align: right;
+  font-weight: 600;
+  color: #0c4a6e;
+  font-size: 0.9em;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+/* ── 細菌介紹區 ── */
+.bacteria-info {
+  margin-top: 20px;
+  border-top: 2px solid #009dcd;
+  padding-top: 20px;
+}
+
+.info-header h3 {
+  font-size: 16px;
+  color: #0c4a6e;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.info-content {
+  background: transparent;
+  border-radius: 10px;
+  padding: 15px;
+  min-height: 270px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.info-empty {
+  text-align: center;
+  color: #0ea5e9;
+  width: 100%;
+}
+
+.info-empty p {
+  font-size: 14px;
+  color: #0c4a6e;
+  font-weight: 600;
+}
+
+.bacteria-detail {
+  display: flex;
+  gap: 5px;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.bacteria-image {
+  width: 33.33%;
+  height: 240px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid rgba(14, 165, 233, 0.3);
+  flex-shrink: 0;
+}
+
+.bacteria-description {
+  flex: 1;
+  padding-left: 10px;
+}
+
+.bacteria-description h4 {
+  font-size: 16px;
+  color: #0c4a6e;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.bacteria-description p {
+  font-size: 14px;
+  color: #0c4a6e;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ── 響應式 ── */
+@media (max-width: 1200px) {
+  .content {
+    gap: 15px;
+    padding: 0 15px 15px;
+  }
+  .results-section {
+    max-width: 400px;
+  }
+}
+
+@media (max-width: 900px) {
+  .content {
+    flex-direction: column;
+  }
+  .results-section {
+    max-width: 100%;
+    flex: 0 0 350px;
+  }
+  .title {
+    font-size: 1.8em;
+  }
+}
+
+@media (max-width: 600px) {
+  .content {
+    padding: 0 10px 10px;
+    gap: 10px;
+  }
+  .title {
+    font-size: 1.5em;
+  }
+  .results-section {
+    flex: 0 0 300px;
+    min-width: 100%;
+  }
+  .class-name {
+    min-width: 100px;
+    font-size: 13px;
+  }
+  .progress-bar {
+    min-width: 50px;
+  }
+  .percentage {
+    font-size: 0.85em;
+  }
+}
