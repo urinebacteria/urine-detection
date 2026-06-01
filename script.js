@@ -60,7 +60,20 @@ const BACTERIA_INFO = {
   },
 };
 
-// DOM
+// 類別顯示名稱對照表（可自由修改）
+const LABEL_DISPLAY = {
+  "白血球 WBC": "白血球 (WBC)",
+  "紅血球 RBC": "紅血球 (RBC)",
+  "克雷伯氏菌 Klebsiella": "克雷伯氏菌 (Klebsiella)",
+  "葡萄球菌 SA": "葡萄球菌 (SA)",
+  "念珠菌 Candida": "念珠菌 (Candida)",
+  "表皮細胞 Epithelial Cells": "表皮細胞 (Epithelial Cells)",
+  "大腸桿菌 Escherichia coli": "大腸桿菌 (E. coli)",
+  "尿結晶 Urine Crystals": "尿結晶 (Urine Crystals)",
+};
+
+// 取得顯示名稱，找不到就回傳原始 label
+const getDisplayName = (label) => LABEL_DISPLAY[label] || label;
 const els = {
   canvas: document.getElementById("webcam-canvas"),
   list: document.getElementById("list"),
@@ -130,7 +143,7 @@ function buildClassList() {
     div.dataset.idx = idx;
     div.innerHTML = `
       <div class="progress-container">
-        <span class="class-name">${name}</span>
+        <span class="class-name">${getDisplayName(name)}</span>
         <div class="progress-bar">
           <div class="progress-fill" id="p${idx}" style="width:0%;"></div>
         </div>
