@@ -10,49 +10,49 @@ const isHidden = (name = "") =>
 
 // 細菌資料庫
 const BACTERIA_INFO = {
-  "白血球 WBC": {
+  "白血球 (WBC)": {
     name: "白血球 (White Blood Cells)",
     description:
       "尿液中白血球增多通常表示泌尿道有發炎或感染情況。常見疾病包括膀胱炎、腎盂腎炎、尿道炎等。典型症狀包括頻尿、排尿疼痛、尿液混濁，若是腎臟感染還可能出現發燒、腰痛等。若發現白血球異常升高且合併症狀，建議盡快就醫進行尿液培養檢查。",
     image: "img/wbc.jpeg",
   },
-  "紅血球 RBC": {
+  "紅血球 (RBC)": {
     name: "紅血球 (Red Blood Cells)",
     description:
       "正常情況下尿液中不應含有大量紅血球，若尿液檢查發現紅血球增多（稱為血尿），代表泌尿系統某處有出血情況。造成血尿的原因很多，包括泌尿道感染、尿路結石、腎臟疾病、泌尿道腫瘤，或是劇烈運動後的暫時性血尿。若出現血尿特別是合併疼痛、頻尿、排尿困難等症狀，建議儘快就醫。",
     image: "img/RBC.jpeg",
   },
-  "克雷伯氏菌 Klebsiella": {
+  "克雷伯氏菌 (Klebsiella)": {
     name: "克雷伯氏菌 (Klebsiella)",
     description:
       "克雷伯氏菌正常存在於人體腸道。可造成泌尿道感染、肺炎、傷口感染及敗血症等。常見高危險群包括住院病人、免疫力低下者及慢性病患者。許多已演變成對多數抗生素有抗藥性的「超級細菌」，治療困難。",
     image: "img/klebsiella.jpg",
   },
-  "葡萄球菌 SA": {
+  "葡萄球菌 (SA)": {
     name: "葡萄球菌 (Staphylococcus aureus)",
     description:
       "葡萄球菌廣泛存在於人體皮膚、鼻腔等部位。常見感染包括皮膚感染、傷口感染、食物中毒，嚴重時可能引發敗血症。最大問題是抗藥性，許多已演變成對多種抗生素具抗藥性的「超級細菌」。預防包括保持手部衛生、妥善處理傷口。",
     image: "img/SA.jpeg",
   },
-  "念珠菌 Candida": {
+  "念珠菌 (Candida)": {
     name: "念珠菌 (Candida)",
     description:
       "念珠菌是一種真菌，常見高危險群包括免疫力低下者、糖尿病患者、長期使用抗生素者、懷孕婦女及長期留置導尿管的病人。念珠菌感染可造成泌尿道發炎，治療使用抗真菌藥物，同時需改善危險因子如控制血糖。",
     image: "img/Candida.jpg",
   },
-  "表皮細胞 Epithelial Cells": {
+  "表皮細胞 (Epithelial Cells)": {
     name: "表皮細胞 (Epithelial Cells)",
     description:
       "尿液中發現少量表皮細胞是正常現象。若出現大量，可能代表檢體採集時受到污染或尿道發炎。建議採用「中段尿」方式採檢，先排出一些尿液沖洗尿道口，再收集中段尿液送檢以獲得準確結果。",
     image: "img/EPC.jpeg",
   },
-  "大腸桿菌 Escherichia coli": {
+  "大腸桿菌 (Escherichia coli)": {
     name: "大腸桿菌 (Escherichia coli)",
     description:
       "大腸桿菌是泌尿道感染最常見的致病菌，約佔所有案例的70-80%。感染可引起膀胱炎、腎盂腎炎，嚴重時可能導致敗血症。治療使用抗生素，需完整服用療程。預防包括多喝水、不憋尿、保持會陰部清潔乾爽等。",
     image: "img/coli.png",
   },
-  "尿結晶 Urine Crystals": {
+  "尿結晶 (Urine Crystals)": {
     name: "尿結晶 (Urine Crystals)",
     description:
       "尿結晶是尿液中礦物質析出形成的微小晶體。少量通常無害，但若持續大量出現可能聚集形成「尿路結石」，引起劇烈疼痛、血尿、排尿困難。預防方法包括每天攝取充足水分（2000-2500毫升）、均衡飲食、定期健康檢查等。",
@@ -62,14 +62,14 @@ const BACTERIA_INFO = {
 
 // 類別顯示名稱對照表（可自由修改）
 const LABEL_DISPLAY = {
-  "白血球 WBC": "白血球 (WBC)",
-  "紅血球 RBC": "紅血球 (RBC)",
-  "克雷伯氏菌 Klebsiella": "克雷伯氏菌 (Klebsiella)",
-  "葡萄球菌 SA": "葡萄球菌 (SA)",
-  "念珠菌 Candida": "念珠菌 (Candida)",
-  "表皮細胞 Epithelial Cells": "表皮細胞 (Epithelial Cells)",
-  "大腸桿菌 Escherichia coli": "大腸桿菌 (E. coli)",
-  "尿結晶 Urine Crystals": "尿結晶 (Urine Crystals)",
+  "白血球 (WBC)": "白血球 (WBC)",
+  "紅血球 (RBC)": "紅血球 (RBC)",
+  "克雷伯氏菌 (Klebsiella)": "克雷伯氏菌 (Klebsiella)",
+  "葡萄球菌 (SA)": "葡萄球菌 (SA)",
+  "念珠菌 (Candida)": "念珠菌 (Candida)",
+  "表皮細胞 (Epithelial Cells)": "表皮細胞 (Epithelial Cells)",
+  "大腸桿菌 (Escherichia coli)": "大腸桿菌 (E. coli)",
+  "尿結晶 (Urine Crystals)": "尿結晶 (Urine Crystals)",
 };
 
 // 取得顯示名稱，找不到就回傳原始 label
